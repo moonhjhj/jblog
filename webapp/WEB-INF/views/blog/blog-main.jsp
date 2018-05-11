@@ -20,6 +20,14 @@
 		<div id="wrapper">
 			<div id="content">
 				<div class="blog-content">
+					
+							<!-- 등록된 글이 없는경우 -->
+							<h4>등록된 글이 없습니다.</h4>
+							<p>
+								
+							<p>
+				</div>
+					<!-- 
 					<h4>어벤져스: 인피니티 워 </h4>
 					<p>
 						새로운 조합을 이룬 어벤져스, <br>
@@ -28,15 +36,7 @@
   						<br>
 						4월, 마블의 클라이맥스를 목격하라!<br>
 					</p>
-					
-					<!-- 등록된 글이 없는경우 -->
-					<!-- 
-					<h4>등록된 글이 없습니다.</h4>
-					<p>
-						
-					<p>
 					 -->
-				</div>
 				
 				<ul class="blog-list">
 					<li>
@@ -65,21 +65,21 @@
 
 		<div id="extra">
 			<div class="blog-logo">
-				<img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg">				
+				<img src="${pageContext.request.contextPath}/upload/${blogVo.logoFile}">				
 			</div>
 		</div>
 
 		<div id="navigation">
 			<h2>카테고리</h2>
 			<ul>
-				<li><a href="">영화</a></li>
-				<li><a href="">음악</a></li>
-				<li><a href="">미분류</a></li>
+				<c:forEach items = "${cateList }" var = "cateList">
+				<li><a href="">${cateList.cateName }</a></li>
+				</c:forEach>
 			</ul>
 		</div>
 		
 		<c:import url="/WEB-INF/views/includes/blogFooter.jsp"></c:import>
-
+		
 		
 	</div>
 </body>

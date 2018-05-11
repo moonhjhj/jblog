@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cate">
+	
+	<insert id = "makeCate" parameterType="com.javaex.vo.CategoryVo">
+		<![CDATA[
+		
+			INSERT INTO category
+			VALUES(
+					seq_category_no.NEXTVAL
+					,#{id}
+					,#{cateName}
+					,#{description}
+					,sysdate
+					)
+		]]>
+	</insert>
+
+	<select id = "getCateList" parameterType="String"  resultType = "com.javaex.vo.CategoryVo">
+		<![CDATA[
+		
+			SELECT cateNo, cateName, description, regDate
+			FROM category
+			WHERE id = #{id}
+		]]>
+	</select>	
+	
+</mapper>

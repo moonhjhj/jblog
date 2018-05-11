@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.BlogDao;
+import com.javaex.dao.CategoryDao;
 import com.javaex.dao.UserDao;
-import com.javaex.vo.BlogVo;
+import com.javaex.vo.CategoryVo;
 import com.javaex.vo.UserVo;
 
 @Service
@@ -19,6 +20,9 @@ public class UserService {
 	
 	@Autowired
 	private BlogDao blogDao;
+	
+	@Autowired
+	private CategoryDao cateDao;
 	
 	public String idCheck(String id) {
 		System.out.println("userService id: " + id);
@@ -38,7 +42,7 @@ public class UserService {
 		int joinResult = userDao.join(userVo);
 		String id = userVo.getId();
 		String blogTitle = userVo.getUserName() + "의 블로그입니다.";
-		String logoFile = "${pageContext.request.contextPath}/assets/images/spring-logo.jpg";
+		String logoFile = "spring-logo.jpg";
 		
 		Map<String, String> blogMap = new HashMap<String, String>();
 		blogMap.put("id", id);
@@ -46,6 +50,10 @@ public class UserService {
 		blogMap.put("logoFile", logoFile);
 		blogDao.makeBlog(blogMap);
 		
+		
+		CategoryVo cateVo = new CategoryVo(userVo.getId(), "미분류", "등록된 글이 없습니다");
+		
+		cateDao.makeCate(cateVo);
 		return joinResult;
 	}
 	
