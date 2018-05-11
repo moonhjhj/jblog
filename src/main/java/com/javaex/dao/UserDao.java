@@ -13,12 +13,8 @@ public class UserDao {
 	private SqlSession sqlSession;
 	
 	public String idCheck(String id) {
-		System.out.println("userDao id: " + id);
-		String a = sqlSession.selectOne("user.idCheck", id);
-		System.out.println(a);
+		System.out.println("UserDao id: " + id);
 		return sqlSession.selectOne("user.idCheck", id);
-		
-		
 	}
 	
 	

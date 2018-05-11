@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.javaex.service.BlogService;
 import com.javaex.service.UserService;
+import com.javaex.vo.BlogVo;
 import com.javaex.vo.UserVo;
 
 @Controller
@@ -26,55 +28,55 @@ public class UserController {
 		System.out.println("loginform");
 		return "user/loginForm";
 	}
-	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
 		UserVo authUser = userService.login(userVo);
-		
-		if(authUser != null) {
-			
+
+		if (authUser != null) {
+
 			session.setAttribute("authUser", authUser);
 			System.out.println(authUser.toString());
-			return "redirect:/"+authUser.getId();
-			
-		}else {
+			return "redirect:/" + authUser.getId();
+
+		} else {
 
 			return "redirect:/user/loginform?result=fail";
 		}
-		
+
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String joinform() {
 
-		System.out.println("joinform");
+		System.out.println("[UserJoinform]");
+		System.out.println("[UserJoinform]");
 		return "user/joinForm";
 	}
 
 	@RequestMapping(value = "/userjoin", method = RequestMethod.POST)
 	public String join(@ModelAttribute UserVo userVo) {
-		System.out.println("userjoin");
-		System.out.println(userVo.toString());
+		System.out.println("[userjoin]");
 		userService.join(userVo);
-		
-		
+		System.out.println("[UserJoin}>>" + userVo.toString());
+
 		return "user/joinSuccess";
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/idcheck", method = RequestMethod.POST)
 	public String idCheck(@RequestParam("id") String id) {
-		System.out.println("Controller idCheck id: " + id);
+		System.out.println("UserController idCheck id: " + id);
 
 		return userService.idCheck(id);
 	}
-	
+
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.removeAttribute("authUser");
 		session.invalidate();
+		System.out.println("Logout Success");
 		return "redirect:/";
 	}
-	
 
 }

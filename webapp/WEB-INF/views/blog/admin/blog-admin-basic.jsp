@@ -13,20 +13,8 @@
 
 	<div id="container">
 		
-		<!-- 블로그 해더 -->
-		<div id="header">
-			<h1><a href="">홍길동 님의 블로그 입니다.</a></h1>
-			<ul>
-				<!-- 로그인 전 메뉴 -->
-				<li><a href="">로그인</a></li>
-				
-				<!-- 로그인 후 메뉴 -->
-				<!-- 
-				<li><a href="">로그아웃</a></li>
-				<li><a href="">내블로그 관리</a></li>
-				 -->		
-			</ul>
-		</div>
+		<c:import url="/WEB-INF/views/includes/blogHeader.jsp"></c:import>
+
 		
 		
 		<div id="wrapper">
@@ -37,16 +25,16 @@
 					<li><a href="">글작성</a></li>
 				</ul>
 				
-				<form action="" method="">
+				<form action="${pageContext.request.contextPath }/${id}/admin/basic/blogMgt" method="get" enctype="multipart/form-data">
 	 		      	<table class="admin-config">
 			      		<tr>
 			      			<td class="t">블로그 제목</td>
-			      			<td><input type="text" size="40" name="blogTitle" value=""></td>
+			      			<td><input type="text" size="40" name="blogTitle" value="${blogVo.blogTitle }"></td>
 			      		</tr>
 			      		<tr>
 			      			<td class="t">로고이미지</td>
-			      			<td><img src="${pageContext.request.contextPath}/assets/images/spring-logo.jpg"></td>   
-			      		</tr>      		
+			      			<td><img src="${pageContext.request.contextPath }/upload/${blogVo.logoFile}"></td>   
+			      		</tr>
 			      		<tr>
 			      			<td class="t">&nbsp;</td>
 			      			<td><input type="file" name="file"></td>      			
@@ -61,12 +49,8 @@
 		</div>
 		
 		
-		<!-- 푸터-->
-		<div id="footer">
-			<p>
-				<strong>Spring 이야기</strong> is powered by JBlog (c)2018
-			</p>
-		</div>
+		<c:import url="/WEB-INF/views/includes/blogFooter.jsp"></c:import>
+		
 	
 	</div>
 </body>

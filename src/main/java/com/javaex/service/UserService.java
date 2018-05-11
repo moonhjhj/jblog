@@ -1,10 +1,14 @@
 package com.javaex.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.BlogDao;
 import com.javaex.dao.UserDao;
+import com.javaex.vo.BlogVo;
 import com.javaex.vo.UserVo;
 
 @Service
@@ -20,7 +24,6 @@ public class UserService {
 		System.out.println("userService id: " + id);
 		String count = userDao.idCheck(id);
 		String result;
-		
 		if(count !=null) {
 			result = "true";
 		}else {
@@ -33,7 +36,16 @@ public class UserService {
 	
 	public int join(UserVo userVo) {
 		int joinResult = userDao.join(userVo);
-		blogDao.makeBlog(userVo.getId());
+		String id = userVo.getId();
+		String blogTitle = userVo.getUserName() + "의 블로그입니다.";
+		String logoFile = "${pageContext.request.contextPath}/assets/images/spring-logo.jpg";
+		
+		Map<String, String> blogMap = new HashMap<String, String>();
+		blogMap.put("id", id);
+		blogMap.put("blogTitle", blogTitle);
+		blogMap.put("logoFile", logoFile);
+		blogDao.makeBlog(blogMap);
+		
 		return joinResult;
 	}
 	

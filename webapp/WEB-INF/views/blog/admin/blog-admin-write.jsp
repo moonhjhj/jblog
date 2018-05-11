@@ -13,20 +13,7 @@
 
 	<div id="container">
 		
-		<!-- 블로그 해더 -->
-		<div id="header">
-			<h1><a href="">홍길동 님의 블로그 입니다.</a></h1>
-			<ul>
-				<!-- 로그인 전 메뉴 -->
-				<li><a href="">로그인</a></li>
-				
-				<!-- 로그인 후 메뉴 -->
-				<!-- 
-				<li><a href="">로그아웃</a></li>
-				<li><a href="">내블로그 관리</a></li>
-				 -->		
-			</ul>
-		</div>
+		<c:import url="/WEB-INF/views/includes/blogHeader.jsp"></c:import>
 
 		
 		<div id="wrapper">
@@ -64,12 +51,8 @@
 			</div>
 		</div>
 		
-		<!-- 푸터-->
-		<div id="footer">
-			<p>
-				<strong>Spring 이야기</strong> is powered by JBlog (c)2018
-			</p>
-		</div>
+		<c:import url="/WEB-INF/views/includes/blogFooter.jsp"></c:import>
+
 	</div>
 </body>
 </html>
