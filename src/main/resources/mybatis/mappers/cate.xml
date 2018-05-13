@@ -25,4 +25,20 @@
 		]]>
 	</select>	
 	
+	
+	<insert id = "addCate" parameterType="com.javaex.vo.CategoryVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">	
+			select seq_category_no.nextval from dual
+		</selectKey>
+		<![CDATA[
+			INSERT INTO category
+			VALUES(
+					,#{cateName}
+					,#{description}
+					,sysdate
+					)
+		
+		]]>
+	</insert>
+	
 </mapper>

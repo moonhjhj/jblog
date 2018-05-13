@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" 	src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 <title>JBlog</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/jblog.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
@@ -84,6 +85,52 @@
 	</div>
 </body>
 
+<script type="text/javascript">
 
+	$("#btnAddCate").on("click", function(){
+		
+		var cateName = $("[name = name]").val();
+		var description = $("[name = desc]").val();
+		
+		cateVo = { cateName : ${"input[name = 'cateName']"}.val(), 
+				   description : ${"input[name = 'description']"}.val()};
+		
+		$.ajax({
+				
+		// 		url : "${pageContext.request.contextPath }/api/gb/add?name=name&password=password", //원래 이렇게 써야 되는데 data : 뒤에 정의해줬으니까 add만써도됨.		
+				url : "${pageContext.request.contextPath }/addCate",		
+				type : "post",
+				data : {cateName : cateName, description : description},
+				dataType : "json",
+		// 		여기까지 controller로 감. 갔다가 성공했을 시 success로 옴.
+				success : function(result){
+					/*성공시 처리해야될 코드 작성*/
+					if(result != 0){
+						
+					}else{
+					}
+					
+					
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+				
+				
+			});
+		
+	});
+
+
+
+function render(cateVo, updown){
+	
+	var str = 
+	
+	
+	
+	
+}
+</script>
 
 </html>

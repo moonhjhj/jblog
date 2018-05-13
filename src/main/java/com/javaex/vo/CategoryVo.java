@@ -8,6 +8,13 @@ public class CategoryVo {
 	private String description;
 	private String regDate;
 
+	
+	public CategoryVo(String cateName, String description) {
+		super();
+		this.cateName = cateName;
+		this.description = description;
+	}
+
 	public CategoryVo(String id, String cateName, String description) {
 		super();
 		this.id = id;

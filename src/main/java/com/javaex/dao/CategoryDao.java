@@ -16,14 +16,18 @@ public class CategoryDao {
 	
 	public void makeCate(CategoryVo cateVo) {
 		
-		
 		sqlSession.insert("cate.makeCate", cateVo);
+		
+	}
+	public List<CategoryVo> getCateList(String id){
+		
+		return sqlSession.selectList("cate.getCateList", id);
+		
 	}
 	
 	
-	public List<CategoryVo> getCateList(String id){
+	public void addCate(CategoryVo cateVo) {
 		
-		
-		return sqlSession.selectList("cate.getCateList", id);
+		sqlSession.insert("cate.addCate", cateVo);
 	}
 }

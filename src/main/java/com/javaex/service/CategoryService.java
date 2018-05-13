@@ -18,4 +18,9 @@ public class CategoryService {
 		
 		return cateDao.getCateList(id);
 	}
+	
+	public void addCate(CategoryVo cateVo) {
+		
+		cateDao.addCate(cateVo);
+	}
 }
