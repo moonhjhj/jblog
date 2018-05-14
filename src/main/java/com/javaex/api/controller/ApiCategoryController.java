@@ -31,11 +31,12 @@ public class ApiCategoryController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/{id}/addCate", method = RequestMethod.POST)
+	@RequestMapping(value = "/{id}/addCate", method = RequestMethod.GET)
 	public CategoryVo addCate(@PathVariable("id") String id, @ModelAttribute CategoryVo cateVo) {
-		
 		System.out.println("[CategoryController] >> addCate IN");
-		CategoryVo catVo = cateService.addCate(cateVo);
+		CategoryVo catVo = cateService.addCate(cateVo, id);
+		
+		System.out.println("[CategoryController] >> catVo : " + catVo.toString());
 		System.out.println("[CategoryController] >> addCate success");
 		return catVo;
 	}

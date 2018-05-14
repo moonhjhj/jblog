@@ -103,15 +103,16 @@
 		
 		console.log(cateName, description);
 		
-		cateVo = { cateName : cateName, 
-				   description : description};
+// 		cateVo = { cateName : cateName, 
+// 				   description : description};
 		
 		$.ajax({
 				
 		// 		url : "${pageContext.request.contextPath }/api/gb/add?name=name&password=password", //원래 이렇게 써야 되는데 data : 뒤에 정의해줬으니까 add만써도됨.		
-				url : "${pageContext.request.contextPath }/{id}/addCate",		
-				type : "post",
-				data : JSON.stringify(cateVo),
+				url : "${pageContext.request.contextPath }/${id}/addCate",		
+				type : "get",
+// 				data : JSON.stringify(cateVo),
+				data : {cateName : cateName, description : description},
 				dataType : "json",
 		// 		여기까지 controller로 감. 갔다가 성공했을 시 success로 옴.
 				success : function(cateList){
@@ -119,7 +120,6 @@
 					render(cateList, "up");
 					var cateName = $("[name = name]").val("");
 					var description = $("[name = desc]").val("");
-					
 				},
 				error : function(XHR, status, error) {
 					console.error(status + " : " + error);
@@ -136,7 +136,7 @@ function render(cateList, updown){
 	
 	var str = "";
 // 	str += "<tbody id = " + cateList.cateNo + ">";
-	str += "	<tr id = " + cateList.cateNo + ">";
+	str += "	<tr id = '" + cateList.cateNo + "'>";
 	str += "		<td>[" + cateList.cateNo + "]</td>";
 	str += "		<td>[" + cateList.cateName + "]</td>";
 	str += "		<td>" + "5" + "</td>";			
@@ -165,8 +165,8 @@ function fetchList(){
 	
 $.ajax({
 		
-		url : "${pageContext.request.contextPath }/{id}/admin/category",		
-		type : "post",
+		url : "${pageContext.request.contextPath }/${id}/admin/category",		
+		type : "get",
 
 		dataType : "json",
 		success : function(cateList){ 

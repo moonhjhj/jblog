@@ -29,7 +29,8 @@ public class CategoryService {
 //		return cateDao.selectCategory(cateVo.getId());
 //	}
 	
-	public CategoryVo addCate(CategoryVo cateVo) {
+	public CategoryVo addCate(CategoryVo cateVo, String id) {
+		cateVo.setId(id);
 		int cateNo = cateDao.addCate(cateVo);
 		return cateDao.selectCategory(cateNo);
 	}

@@ -31,7 +31,8 @@ public class CategoryDao {
 	
 	public int addCate(CategoryVo cateVo) {
 		System.out.println("[CategoryDao] >> addCate IN");
-		return sqlSession.insert("cate.addCate", cateVo);
-
+		System.out.println(cateVo.toString());
+		sqlSession.insert("cate.addCate", cateVo);
+		return cateVo.getCateNo();
 	}
 }
