@@ -31,8 +31,8 @@ public class ApiCategoryController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/addCate", method = RequestMethod.POST)
-	public CategoryVo addCate(@ModelAttribute CategoryVo cateVo) {
+	@RequestMapping(value = "/{id}/addCate", method = RequestMethod.POST)
+	public CategoryVo addCate(@PathVariable("id") String id, @ModelAttribute CategoryVo cateVo) {
 		
 		System.out.println("[CategoryController] >> addCate IN");
 		CategoryVo catVo = cateService.addCate(cateVo);

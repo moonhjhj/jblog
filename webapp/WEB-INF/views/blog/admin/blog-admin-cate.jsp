@@ -67,11 +67,11 @@
 		      	<table id="admin-cat-add" >
 		      		<tr>
 		      			<td class="t">카테고리명</td>
-		      			<td><input type="text" name="cateName" value=""></td>
+		      			<td><input type="text" name="name" value=""></td>
 		      		</tr>
 		      		<tr>
 		      			<td class="t">설명</td>
-		      			<td><input type="text" name="description"></td>
+		      			<td><input type="text" name="desc"></td>
 		      		</tr>
 		      		<tr>
 		      			<td class="s">&nbsp;</td>
@@ -98,27 +98,27 @@
 		console.log("btnAddCate");
 // 		var cateName = $("[name = name]").val();
 // 		var description = $("[name = desc]").val();
-		var cateName = $("[name = cateName]").val();
-		var description = $("[name = description]").val();
+		var cateName = $("[name = name]").val();
+		var description = $("[name = desc]").val();
 		
 		console.log(cateName, description);
 		
-		cateVo = { cateName : $("input[name = 'cateName']").val(), 
-				   description : $("input[name = 'description']").val()};
+		cateVo = { cateName : cateName, 
+				   description : description};
 		
 		$.ajax({
 				
 		// 		url : "${pageContext.request.contextPath }/api/gb/add?name=name&password=password", //원래 이렇게 써야 되는데 data : 뒤에 정의해줬으니까 add만써도됨.		
-				url : "${pageContext.request.contextPath }/addCate",		
+				url : "${pageContext.request.contextPath }/{id}/addCate",		
 				type : "post",
-				data : {cateName : cateName, description : description},
+				data : JSON.stringify(cateVo),
 				dataType : "json",
 		// 		여기까지 controller로 감. 갔다가 성공했을 시 success로 옴.
 				success : function(cateList){
 					/*성공시 처리해야될 코드 작성*/
 					render(cateList, "up");
-					var cateName = $("[name = cateName]").val("");
-					var description = $("[name = description]").val("");
+					var cateName = $("[name = name]").val("");
+					var description = $("[name = desc]").val("");
 					
 				},
 				error : function(XHR, status, error) {

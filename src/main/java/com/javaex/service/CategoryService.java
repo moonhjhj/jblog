@@ -19,14 +19,18 @@ public class CategoryService {
 		return cateDao.getCateList(id);
 	}
 	
+//	public CategoryVo addCate(CategoryVo cateVo) {
+//		System.out.println("[CategoryService] >> addCate IN");
+//
+//		int cateNo = cateDao.addCate(cateVo);
+//		CategoryVo cateVo = cateDao.getca
+//		System.out.println("[CategoryController] >> addCate OUT");
+//
+//		return cateDao.selectCategory(cateVo.getId());
+//	}
+	
 	public CategoryVo addCate(CategoryVo cateVo) {
-		System.out.println("[CategoryService] >> addCate IN");
-
 		int cateNo = cateDao.addCate(cateVo);
-		int catNo = cateDao.selectCategory(cateVo.getId());
-		CategoryVo cateVo = cateDao.getca
-		System.out.println("[CategoryController] >> addCate OUT");
-
-		return cateDao.selectCategory(cateVo.getId());
+		return cateDao.selectCategory(cateNo);
 	}
 }
