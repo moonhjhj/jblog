@@ -49,6 +49,7 @@ public class BlogController {
 	public String blogMain(@PathVariable("id") String id, Model model) {
 		System.out.println("BlogController id: " + id);
 		BlogVo blogVo = blogService.getBlog(id);
+
 		String url = "";
 		
 		if(blogVo != null) {

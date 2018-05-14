@@ -108,10 +108,38 @@
 		
 		$.ajax({
 				
-		// 		url : "${pageContext.request.contextPath }/api/gb/add?name=name&password=password", //원래 이렇게 써야 되는데 data : 뒤에 정의해줬으니까 add만써도됨.		
+	// 		url : "${pageContext.request.contextPath }/api/gb/add?name=name&password=password", //원래 이렇게 써야 되는데 data : 뒤에 정의해줬으니까 add만써도됨.		
+			url : "${pageContext.request.contextPath }/${id}/addCate",		
+			type : "get",
+	//		data : JSON.stringify(cateVo),
+			data : {cateName : cateName, description : description},
+			dataType : "json",
+	// 		여기까지 controller로 감. 갔다가 성공했을 시 success로 옴.
+			success : function(cateList){
+				/*성공시 처리해야될 코드 작성*/
+				render(cateList, "up");
+				var cateName = $("[name = name]").val("");
+				var description = $("[name = desc]").val("");
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	});
+	$("#btnAddCate").on("click", function(){
+			
+			console.log("btnAddCate");
+			var cateName = $("[name = name]").val();
+			var description = $("[name = desc]").val();
+			
+			console.log(cateName, description);
+			
+			
+			$.ajax({
+					
 				url : "${pageContext.request.contextPath }/${id}/addCate",		
 				type : "get",
-// 				data : JSON.stringify(cateVo),
+		//		data : JSON.stringify(cateVo),
 				data : {cateName : cateName, description : description},
 				dataType : "json",
 		// 		여기까지 controller로 감. 갔다가 성공했을 시 success로 옴.
@@ -124,12 +152,8 @@
 				error : function(XHR, status, error) {
 					console.error(status + " : " + error);
 				}
-				
-				
 			});
-		
-	});
-
+		});
 
 
 function render(cateList, updown){
