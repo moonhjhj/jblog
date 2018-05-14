@@ -88,7 +88,11 @@
 </body>
 
 <script type="text/javascript">
-
+	$(document).ready(function(){
+		
+		fetchList();
+		//원래 이 안에 ajax 있었음. =>ready안을 간단하게 바꾼것.
+	});
 	$("#btnAddCate").on("click", function(){
 		
 		console.log("btnAddCate");
@@ -151,6 +155,32 @@ function render(cateList, updown){
 	}else{
 		console.log("오류");
 	}
+	
+	
+}
+
+
+
+function fetchList(){
+	
+$.ajax({
+		
+		url : "${pageContext.request.contextPath }/{id}/admin/category",		
+		type : "post",
+
+		dataType : "json",
+		success : function(cateList){ 
+			/*성공시 처리해야될 코드 작성*/
+			console.log(cateList);
+			for(var i = 0; i<cateList.length; i++){
+				
+					render(cateList[i], "down");
+			}
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
 	
 	
 }

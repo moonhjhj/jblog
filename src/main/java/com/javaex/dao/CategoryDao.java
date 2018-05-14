@@ -24,16 +24,15 @@ public class CategoryDao {
 		return sqlSession.selectList("cate.getCateList", id);
 		
 	}
-	public CategoryVo selectCategory(int cateNo) {
-		return sqlSession.selectOne("cate.selectCategory", cateNo);
+	public int selectCategory(String id) {
+		return sqlSession.selectOne("cate.selectCategory", id);
 		
 	}
 	
 	public int addCate(CategoryVo cateVo) {
 		System.out.println("[CategoryDao] >> addCate IN");
-		sqlSession.insert("cate.addCate", cateVo);
 		System.out.println("[CategoryDao] >> addCate OUT");
+		return sqlSession.insert("cate.addCate", cateVo);
 
-		return cateVo.getCateNo();
 	}
 }
