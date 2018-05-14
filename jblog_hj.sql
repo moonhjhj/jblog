@@ -5,7 +5,7 @@
 --  DDL for Sequence SEQ_CATEGORY_NO
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "JBLOG"."SEQ_CATEGORY_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 4 NOCACHE  NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "JBLOG"."SEQ_CATEGORY_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 5 NOCACHE  NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Sequence SEQ_POST_NO
 --------------------------------------------------------
@@ -15,7 +15,7 @@
 --  DDL for Sequence SEQ_USERS_NO
 --------------------------------------------------------
 
-   CREATE SEQUENCE  "JBLOG"."SEQ_USERS_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 4 NOCACHE  NOORDER  NOCYCLE ;
+   CREATE SEQUENCE  "JBLOG"."SEQ_USERS_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 5 NOCACHE  NOORDER  NOCYCLE ;
 --------------------------------------------------------
 --  DDL for Table BLOG
 --------------------------------------------------------
@@ -79,11 +79,13 @@ SET DEFINE OFF;
 Insert into JBLOG.BLOG (ID,BLOGTITLE,LOGOFILE) values ('spiderman','거미맨의 블로그입니다.','1526220167255eb4d837d-d53e-4e12-bcde-d79da222ce66.gif');
 Insert into JBLOG.BLOG (ID,BLOGTITLE,LOGOFILE) values ('aran0913','문희준의 블로그','152601963774833bfb4a8-4bf6-43b9-a20a-78ee7e0d8f0d.gif');
 Insert into JBLOG.BLOG (ID,BLOGTITLE,LOGOFILE) values ('jin','최방구','152603399434630bd2cce-fa5c-4a45-9a88-5420afe63312.gif');
+Insert into JBLOG.BLOG (ID,BLOGTITLE,LOGOFILE) values ('a','a의 블로그입니다.','spring-logo.jpg');
 REM INSERTING into JBLOG.CATEGORY
 SET DEFINE OFF;
 Insert into JBLOG.CATEGORY (CATENO,ID,CATENAME,DESCRIPTION,REGDATE) values (1,'aran0913','미분류','등록된 글이 없습니다',to_date('18/05/11','RR/MM/DD'));
 Insert into JBLOG.CATEGORY (CATENO,ID,CATENAME,DESCRIPTION,REGDATE) values (3,'spiderman','미분류','등록된 글이 없습니다',to_date('18/05/13','RR/MM/DD'));
 Insert into JBLOG.CATEGORY (CATENO,ID,CATENAME,DESCRIPTION,REGDATE) values (2,'jin','미분류','등록된 글이 없습니다',to_date('18/05/11','RR/MM/DD'));
+Insert into JBLOG.CATEGORY (CATENO,ID,CATENAME,DESCRIPTION,REGDATE) values (4,'a','미분류','등록된 글이 없습니다',to_date('18/05/14','RR/MM/DD'));
 REM INSERTING into JBLOG.POST
 SET DEFINE OFF;
 REM INSERTING into JBLOG.USERS
@@ -91,6 +93,7 @@ SET DEFINE OFF;
 Insert into JBLOG.USERS (USERNO,ID,USERNAME,PASSWORD,JOINDATE) values (3,'spiderman','거미맨','1234',to_date('18/05/13','RR/MM/DD'));
 Insert into JBLOG.USERS (USERNO,ID,USERNAME,PASSWORD,JOINDATE) values (1,'aran0913','문희준','1234',to_date('18/05/11','RR/MM/DD'));
 Insert into JBLOG.USERS (USERNO,ID,USERNAME,PASSWORD,JOINDATE) values (2,'jin','최진명','1234',to_date('18/05/11','RR/MM/DD'));
+Insert into JBLOG.USERS (USERNO,ID,USERNAME,PASSWORD,JOINDATE) values (4,'a','a','a',to_date('18/05/14','RR/MM/DD'));
 --------------------------------------------------------
 --  Constraints for Table CATEGORY
 --------------------------------------------------------
