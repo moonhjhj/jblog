@@ -19,8 +19,13 @@ public class CategoryService {
 		return cateDao.getCateList(id);
 	}
 	
-	public void addCate(CategoryVo cateVo) {
+	public CategoryVo addCate(CategoryVo cateVo) {
+		System.out.println("[CategoryService] >> addCate IN");
+
+		int cateNo = cateDao.addCate(cateVo);
 		
-		cateDao.addCate(cateVo);
+		System.out.println("[CategoryController] >> addCate OUT");
+
+		return cateDao.selectCategory(cateNo); 
 	}
 }

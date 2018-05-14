@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.CategoryService;
 import com.javaex.vo.CategoryVo;
@@ -29,12 +30,14 @@ public class ApiCategoryController {
 		return "blog/admin/blog-admin-cate";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/addCate", method = RequestMethod.POST)
-	public String addCate(@ModelAttribute CategoryVo cateVo) {
+	public CategoryVo addCate(@ModelAttribute CategoryVo cateVo) {
 		
-		
-		cateService.addCate(cateVo);
-		return "";
+		System.out.println("[CategoryController] >> addCate IN");
+		CategoryVo catVo = cateService.addCate(cateVo);
+		System.out.println("[CategoryController] >> addCate success");
+		return catVo;
 	}
 	
 }

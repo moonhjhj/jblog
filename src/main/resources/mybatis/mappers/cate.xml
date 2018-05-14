@@ -32,7 +32,8 @@
 		</selectKey>
 		<![CDATA[
 			INSERT INTO category
-			VALUES(
+			VALUES(#{cateNo}
+					,#{id}
 					,#{cateName}
 					,#{description}
 					,sysdate
@@ -40,5 +41,12 @@
 		
 		]]>
 	</insert>
-	
+	<select id = "selectCategory" parameterType="int"  resultType = "com.javaex.vo.CategoryVo">
+		<![CDATA[
+		
+			SELECT cateNo, cateName, description, regDate
+			FROM category
+			WHERE cateNo = #{cateNo}
+		]]>
+	</select>	
 </mapper>

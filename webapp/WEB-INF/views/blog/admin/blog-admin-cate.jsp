@@ -37,6 +37,7 @@
 			      		</tr>
 		      		</thead>
 		      		<tbody id=cateList>
+		      		<%-- 
 		      			<tr>
 							<td>3</td>
 							<td>영화</td>
@@ -58,6 +59,7 @@
 							<td>기본으로 만들어지는 카테고리 입니다.</td>
 							<td><img src='${pageContext.request.contextPath}/assets/images/delete.jpg'></td>
 						</tr>
+						 --%>
 					</tbody>
 				</table>
       	
@@ -65,11 +67,11 @@
 		      	<table id="admin-cat-add" >
 		      		<tr>
 		      			<td class="t">카테고리명</td>
-		      			<td><input type="text" name="name" value=""></td>
+		      			<td><input type="text" name="cateName" value=""></td>
 		      		</tr>
 		      		<tr>
 		      			<td class="t">설명</td>
-		      			<td><input type="text" name="desc"></td>
+		      			<td><input type="text" name="description"></td>
 		      		</tr>
 		      		<tr>
 		      			<td class="s">&nbsp;</td>
@@ -89,11 +91,16 @@
 
 	$("#btnAddCate").on("click", function(){
 		
-		var cateName = $("[name = name]").val();
-		var description = $("[name = desc]").val();
+		console.log("btnAddCate");
+// 		var cateName = $("[name = name]").val();
+// 		var description = $("[name = desc]").val();
+		var cateName = $("[name = cateName]").val();
+		var description = $("[name = description]").val();
 		
-		cateVo = { cateName : ${"input[name = 'cateName']"}.val(), 
-				   description : ${"input[name = 'description']"}.val()};
+		console.log(cateName, description);
+		
+		cateVo = { cateName : $("input[name = 'cateName']").val(), 
+				   description : $("input[name = 'description']").val()};
 		
 		$.ajax({
 				
@@ -103,13 +110,11 @@
 				data : {cateName : cateName, description : description},
 				dataType : "json",
 		// 		여기까지 controller로 감. 갔다가 성공했을 시 success로 옴.
-				success : function(result){
+				success : function(cateList){
 					/*성공시 처리해야될 코드 작성*/
-					if(result != 0){
-						
-					}else{
-					}
-					
+					render(cateList, "up");
+					var cateName = $("[name = cateName]").val("");
+					var description = $("[name = description]").val("");
 					
 				},
 				error : function(XHR, status, error) {
@@ -123,11 +128,29 @@
 
 
 
-function render(cateVo, updown){
+function render(cateList, updown){
 	
-	var str = 
+	var str = "";
+// 	str += "<tbody id = " + cateList.cateNo + ">";
+	str += "	<tr id = " + cateList.cateNo + ">";
+	str += "		<td>[" + cateList.cateNo + "]</td>";
+	str += "		<td>[" + cateList.cateName + "]</td>";
+	str += "		<td>" + "5" + "</td>";			
+	str += " 		<td>[" + cateList.description + "]</td>";			
+	str += " 		<td><img src='${pageContext.request.contextPath}/assets/images/delete.jpg'></td>";			
+	str += "	</tr>";	
+// 	str += "</tbody>";
+			
 	
-	
+	if(updown == "up"){
+		
+		$("#cateList").prepend(str);
+	}else if(updown == "down"){
+		
+		$("#cateList").append(str);
+	}else{
+		console.log("오류");
+	}
 	
 	
 }
